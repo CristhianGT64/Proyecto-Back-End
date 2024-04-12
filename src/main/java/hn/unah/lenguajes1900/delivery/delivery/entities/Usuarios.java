@@ -36,6 +36,6 @@ public class Usuarios {
     private String  telefono;
 
     private Float latitud;
-
+    
     private Float longitud;
 }

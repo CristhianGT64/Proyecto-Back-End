@@ -25,7 +25,7 @@ public class Roles {
 
     private String descripcionrol;
 
-    @JsonIgnore
-    @OneToOne(mappedBy = "roles")
-    private Usuarios usuarios;
+    // @JsonIgnore
+    // @OneToOne(mappedBy = "roles")
+    // private Usuarios usuarios;
 }
