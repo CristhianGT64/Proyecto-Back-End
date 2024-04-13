@@ -7,11 +7,15 @@ import hn.unah.lenguajes1900.delivery.delivery.Services.impl.UsuarioServiceImpl;
 import hn.unah.lenguajes1900.delivery.delivery.dtos.Login;
 import hn.unah.lenguajes1900.delivery.delivery.entities.Usuarios;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 // import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 
 
@@ -31,6 +35,12 @@ public class UsuarioController {
     public Boolean CrearUsuario(@RequestBody Usuarios usuario) {
         return this.usuarioServiceImpl.crearUsusario(usuario);
     }
+
+    @GetMapping("/Usuario/TraerRepartidores")
+    public List<Usuarios> TraerRepartidores() {
+        return this.usuarioServiceImpl.TraerRepartidores();
+    }
+    
     
     
     
