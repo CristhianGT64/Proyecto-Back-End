@@ -1,5 +1,7 @@
 package hn.unah.lenguajes1900.delivery.delivery.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -28,6 +30,10 @@ public class Usuarios {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "idrol", referencedColumnName = "idrol")
     private Roles roles;
+
+    @JsonIgnore
+    @OneToOne(mappedBy = "usuarios")
+    private Negocio negocio;
 
     private String email;
 
