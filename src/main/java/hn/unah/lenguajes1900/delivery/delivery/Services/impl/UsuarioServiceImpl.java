@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import hn.unah.lenguajes1900.delivery.delivery.Services.UsuarioService;
+import hn.unah.lenguajes1900.delivery.delivery.dtos.ActualizarDireccionesRepartidores;
 import hn.unah.lenguajes1900.delivery.delivery.dtos.Login;
 import hn.unah.lenguajes1900.delivery.delivery.entities.Personas;
 import hn.unah.lenguajes1900.delivery.delivery.entities.Roles;
@@ -65,5 +66,24 @@ public class UsuarioServiceImpl implements UsuarioService{
         Roles repartidores = this.rolesRepositories.findById(2).get();
         return  this.ususarioRepositories.findByRoles(repartidores);
     }
+
+    @Override
+    public String ActualizarDireccion(ActualizarDireccionesRepartidores nvoDireccion) {
+
+
+        try {
+            Usuarios usuario = this.ususarioRepositories.findById(nvoDireccion.getId()).get();
+            usuario.setLatitud(nvoDireccion.getLatitud());
+            usuario.setLongitud(nvoDireccion.getLongitud());
+            this.ususarioRepositories.save(usuario);
+
+            return "Se Guardo la nueva ubicacion";
+        } catch (Exception e) {
+            return "Error al guardar la nueva ubicacion";
+        }
+        // return "No se pudo gradar la nueva ubicacion";
+    }
+
+    
     
 }
