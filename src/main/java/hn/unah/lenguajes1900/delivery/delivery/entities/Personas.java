@@ -13,7 +13,7 @@ import lombok.Data;
 
 @Entity
 @Data
-@Table(name = "persona")
+@Table(name = "personas")
 public class Personas {
 
     @Id
@@ -29,7 +29,7 @@ public class Personas {
 
     private String segundoapellido;
     
-    @JsonIgnore
-    @OneToOne(mappedBy = "personas")
-    private Usuarios usuarios;
+    // @JsonIgnore
+    // @OneToOne(mappedBy = "personas")
+    // private Usuarios usuarios;
 }

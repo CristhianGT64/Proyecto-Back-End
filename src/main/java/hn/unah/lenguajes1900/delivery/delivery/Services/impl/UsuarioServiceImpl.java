@@ -1,10 +1,16 @@
 package hn.unah.lenguajes1900.delivery.delivery.Services.impl;
 
+import java.util.List;
+
+import javax.management.relation.Role;
+
+// import org.hibernate.mapping.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import hn.unah.lenguajes1900.delivery.delivery.Services.UsuarioService;
 import hn.unah.lenguajes1900.delivery.delivery.dtos.Login;
+import hn.unah.lenguajes1900.delivery.delivery.entities.Personas;
 import hn.unah.lenguajes1900.delivery.delivery.entities.Roles;
 import hn.unah.lenguajes1900.delivery.delivery.entities.Usuarios;
 import hn.unah.lenguajes1900.delivery.delivery.repositories.RolesRepositories;
@@ -52,6 +58,12 @@ public class UsuarioServiceImpl implements UsuarioService{
             return true;
             }
         return false;
+    }
+
+    @Override
+    public List<Usuarios> TraerRepartidores() {
+        Roles repartidores = this.rolesRepositories.findById(2).get();
+        return  this.ususarioRepositories.findByRoles(repartidores);
     }
     
 }
