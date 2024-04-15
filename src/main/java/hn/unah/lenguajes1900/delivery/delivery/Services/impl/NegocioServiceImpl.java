@@ -55,8 +55,13 @@ public class NegocioServiceImpl implements NegocioService{
     }
 
     @Override
-    public Negocio BuscarNegocioAdministrador(Usuarios usuario) {
-        return this.negocioRepsitory.findByUsuarios(usuario);
+    public Negocio BuscarNegocioAdministrador(Long idUsuario) {
+        try {
+            Usuarios usuarios = this.ususarioRepositories.findById(idUsuario).get();
+            return this.negocioRepsitory.findByUsuarios(usuarios);
+        } catch (Exception e) {
+            return null;
+        }
     }
     
 }

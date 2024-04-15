@@ -11,5 +11,5 @@ public interface NegocioService {
 
     public List<Negocio> traerNegocios();
 
-    public Negocio BuscarNegocioAdministrador(Usuarios usuario);
+    public Negocio BuscarNegocioAdministrador(Long idUsuario);
 }
