@@ -55,6 +55,11 @@ public class UsuarioController {
         return this.usuarioServiceImpl.crearRepartidor(repartidor);
     }
     
-    
+    @PutMapping("Usuario/ActualizarUbicacion")
+    public String ActualizarUbicacion(@RequestBody ActualizarDireccionesRepartidores nvoDireccion) {
+        
+        return this.usuarioServiceImpl.ActualizarDireccion(nvoDireccion);
+    }
+
     
 }

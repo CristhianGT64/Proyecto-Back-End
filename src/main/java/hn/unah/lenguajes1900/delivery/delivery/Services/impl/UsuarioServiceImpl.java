@@ -84,5 +84,23 @@ public class UsuarioServiceImpl implements UsuarioService{
         return false;
 
     }
+
+    @Override
+    public String ActualizarDireccion(ActualizarDireccionesRepartidores nvoDireccion) {
+
+
+        try {
+            Usuarios usuario = this.ususarioRepositories.findById(nvoDireccion.getId()).get();
+            usuario.setLatitud(nvoDireccion.getLatitud());
+            usuario.setLongitud(nvoDireccion.getLongitud());
+            this.ususarioRepositories.save(usuario);
+
+            return "Se Guardo la nueva ubicacion";
+        } catch (Exception e) {
+            return "Error al guardar la nueva ubicacion";
+        }
+        // return "No se pudo gradar la nueva ubicacion";
+    }
+
     
 }

@@ -14,6 +14,8 @@ public interface UsuarioService {
 
     public List<Usuarios> TraerRepartidores();
 
+    public String ActualizarDireccion(ActualizarDireccionesRepartidores nvoDireccion);
+
     public Boolean crearRepartidor(Usuarios usuario);
     
 }
