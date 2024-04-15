@@ -12,5 +12,7 @@ public interface UsuarioService {
     public Boolean crearUsusario(Usuarios usuario);
 
     public List<Usuarios> TraerRepartidores();
+
+    public Boolean crearRepartidor(Usuarios usuario);
     
 }

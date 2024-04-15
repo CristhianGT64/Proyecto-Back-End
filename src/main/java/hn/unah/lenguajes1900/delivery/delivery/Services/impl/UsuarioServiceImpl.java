@@ -2,7 +2,6 @@ package hn.unah.lenguajes1900.delivery.delivery.Services.impl;
 
 import java.util.List;
 
-import javax.management.relation.Role;
 
 // import org.hibernate.mapping.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +9,6 @@ import org.springframework.stereotype.Service;
 
 import hn.unah.lenguajes1900.delivery.delivery.Services.UsuarioService;
 import hn.unah.lenguajes1900.delivery.delivery.dtos.Login;
-import hn.unah.lenguajes1900.delivery.delivery.entities.Personas;
 import hn.unah.lenguajes1900.delivery.delivery.entities.Roles;
 import hn.unah.lenguajes1900.delivery.delivery.entities.Usuarios;
 import hn.unah.lenguajes1900.delivery.delivery.repositories.RolesRepositories;
@@ -64,6 +62,26 @@ public class UsuarioServiceImpl implements UsuarioService{
     public List<Usuarios> TraerRepartidores() {
         Roles repartidores = this.rolesRepositories.findById(2).get();
         return  this.ususarioRepositories.findByRoles(repartidores);
+    }
+
+    @Override
+    public Boolean crearRepartidor(Usuarios repartidor) {
+
+        if (this.ususarioRepositories.findByEmail(repartidor.getEmail()).isEmpty()) {
+            Roles rolDefault = this.rolesRepositories.findById(2).get();
+
+            double latitudDefault= 34.2345;
+            double longitudDefault= -87.3345;
+
+            repartidor.setRoles(rolDefault);
+            repartidor.setLatitud((float) latitudDefault);
+            repartidor.setLongitud((float) longitudDefault);
+            
+            this.ususarioRepositories.save(repartidor);
+            return true;
+            }
+        return false;
+
     }
     
 }
