@@ -53,5 +53,10 @@ public class NegocioServiceImpl implements NegocioService{
     public List<Negocio> traerNegocios() {
         return (List<Negocio>) this.negocioRepsitory.findAll();
     }
+
+    @Override
+    public Negocio BuscarNegocioAdministrador(Usuarios usuario) {
+        return this.negocioRepsitory.findByUsuarios(usuario);
+    }
     
 }

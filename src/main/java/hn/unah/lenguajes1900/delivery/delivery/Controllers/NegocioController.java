@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import hn.unah.lenguajes1900.delivery.delivery.Services.impl.NegocioServiceImpl;
 import hn.unah.lenguajes1900.delivery.delivery.entities.Negocio;
+import hn.unah.lenguajes1900.delivery.delivery.entities.Usuarios;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -30,6 +32,12 @@ public class NegocioController {
     public List<Negocio> TraerNegocios() {
         return this.negocioServiceImpl.traerNegocios();
     }
+
+    @GetMapping("/negocio/TraerNegocio")
+    public Negocio traerNegocioporAdministradorNegocio(@RequestBody Usuarios usuario) {
+        return  this.negocioServiceImpl.BuscarNegocioAdministrador(usuario);
+    }
+    
     
     
 }
