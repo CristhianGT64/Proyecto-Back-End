@@ -8,6 +8,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import hn.unah.lenguajes1900.delivery.delivery.Services.impl.NegocioServiceImpl;
 import hn.unah.lenguajes1900.delivery.delivery.entities.Negocio;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.List;
+
 
 @RestController
 @RequestMapping("/api")
@@ -20,5 +25,11 @@ public class NegocioController {
     public Boolean crearNegocio(@RequestBody Negocio negocio){
         return this.negocioServiceImpl.crearNegocio(negocio);
     }
+
+    @GetMapping("/negocio/TodosNegocios")
+    public List<Negocio> TraerNegocios() {
+        return this.negocioServiceImpl.traerNegocios();
+    }
+    
     
 }

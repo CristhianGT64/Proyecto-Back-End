@@ -1,5 +1,7 @@
 package hn.unah.lenguajes1900.delivery.delivery.Services.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -45,6 +47,11 @@ public class NegocioServiceImpl implements NegocioService{
         }
 
         return false;
+    }
+
+    @Override
+    public List<Negocio> traerNegocios() {
+        return (List<Negocio>) this.negocioRepsitory.findAll();
     }
     
 }
