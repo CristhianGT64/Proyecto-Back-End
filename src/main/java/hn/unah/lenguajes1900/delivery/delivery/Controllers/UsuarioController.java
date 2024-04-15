@@ -4,6 +4,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import hn.unah.lenguajes1900.delivery.delivery.Services.impl.UsuarioServiceImpl;
+import hn.unah.lenguajes1900.delivery.delivery.dtos.ActualizarDireccionesRepartidores;
 import hn.unah.lenguajes1900.delivery.delivery.dtos.Login;
 import hn.unah.lenguajes1900.delivery.delivery.entities.Usuarios;
 
@@ -18,6 +19,14 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 
 
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+
+
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/api")
 public class UsuarioController {
