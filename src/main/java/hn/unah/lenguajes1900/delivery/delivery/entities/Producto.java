@@ -22,7 +22,7 @@ public class Producto {
     @Column(name = "idproducto")
     private Long idproducto;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "idcategoria", referencedColumnName = "idcategoria")
     private Categoria categoria;
 
