@@ -4,6 +4,8 @@ package hn.unah.lenguajes1900.delivery.delivery.entities;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -42,6 +44,7 @@ public class Negocio {
     @JoinColumn(name = "idusuario", referencedColumnName = "idusuario")
     private Usuarios usuarios;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "negocio")
     private List<Producto> producto;
 }

@@ -40,9 +40,14 @@ public class ProductoServiceImpl implements ProductoService{
     }
 
     @Override
-    public List<Producto> TraerProductosxNegocio(Float idNegocio) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'TraerProductosxNegocio'");
+    public List<Producto> TraerProductosxNegocio(Long idNegocio) {
+
+        try {
+            Negocio negocio = negocioRepsitory.findById(idNegocio).get();
+            return this.productoRepositorie.findByNegocio(negocio);
+        } catch (Exception e) {
+            return null;
+        }
     }
     
 }

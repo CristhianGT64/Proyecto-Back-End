@@ -9,6 +9,6 @@ public interface ProductoService {
 
     public Boolean CrearProducto(Producto producto);
 
-    public List<Producto> TraerProductosxNegocio(Float idNegocio);
+    public List<Producto> TraerProductosxNegocio(Long idNegocio);
 
 }
