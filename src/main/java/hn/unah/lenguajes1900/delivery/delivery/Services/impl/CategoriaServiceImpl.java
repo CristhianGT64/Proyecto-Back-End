@@ -19,5 +19,17 @@ public class CategoriaServiceImpl implements CategoriaSerice{
     public List<Categoria> TraerCategorias() {
         return (List<Categoria>) this.categoriaRepositorie.findAll();
     }
+
+    @Override
+    public Boolean crearCategoria(Categoria categoria) {
+        
+        if(this.categoriaRepositorie.findByNombre(categoria.getNombre()).isEmpty()){
+            
+            this.categoriaRepositorie.save(categoria);
+            return true;
+        }
+
+        return false;
+    }
     
 }
