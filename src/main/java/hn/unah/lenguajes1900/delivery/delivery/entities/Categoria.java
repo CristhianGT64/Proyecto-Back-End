@@ -2,6 +2,8 @@ package hn.unah.lenguajes1900.delivery.delivery.entities;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -22,6 +24,7 @@ public class Categoria {
 
     private String nombre;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "categoria")
     private List<Producto> producto;
 }
