@@ -45,6 +45,4 @@ public class NegocioController {
         return  this.negocioServiceImpl.BuscarNegocioAdministrador(idUsuario);
     }
     
-    
-    
 }

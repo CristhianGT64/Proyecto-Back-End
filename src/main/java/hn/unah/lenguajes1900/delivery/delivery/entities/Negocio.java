@@ -40,6 +40,10 @@ public class Negocio {
 
     private float longitud;
 
+    private String descripccion;
+
+    private String imagen;
+
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "idusuario", referencedColumnName = "idusuario")
     private Usuarios usuarios;
