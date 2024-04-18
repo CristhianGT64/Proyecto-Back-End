@@ -11,4 +11,8 @@ public interface ProductoService {
 
     public List<Producto> TraerProductosxNegocio(Long idNegocio);
 
+    public Producto BuscarProducto(Long idProducto);
+
+    public Boolean ActualizarProducto(Producto producto);
+
 }

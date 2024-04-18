@@ -22,11 +22,11 @@ public class Producto {
     @Column(name = "idproducto")
     private Long idproducto;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne()
     @JoinColumn(name = "idcategoria", referencedColumnName = "idcategoria")
     private Categoria categoria;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne()
     @JoinColumn(name = "idnegocio", referencedColumnName = "idnegocio")
     private Negocio negocio;
 

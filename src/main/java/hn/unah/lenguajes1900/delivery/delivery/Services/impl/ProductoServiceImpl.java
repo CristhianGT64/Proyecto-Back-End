@@ -1,6 +1,6 @@
 package hn.unah.lenguajes1900.delivery.delivery.Services.impl;
 
-import java.io.Serial;
+// import java.io.Serial;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,6 +47,25 @@ public class ProductoServiceImpl implements ProductoService{
             return this.productoRepositorie.findByNegocio(negocio);
         } catch (Exception e) {
             return null;
+        }
+    }
+
+    @Override
+    public Producto BuscarProducto(Long idProducto) {
+        try {
+            return this.productoRepositorie.findById(idProducto).get();
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    @Override
+    public Boolean ActualizarProducto(Producto producto) {
+        try {
+            this.productoRepositorie.save(producto);
+            return true;
+        } catch (Exception e) {
+            return false;
         }
     }
     

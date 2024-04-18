@@ -13,6 +13,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+
 
 
 
@@ -32,6 +35,17 @@ public class ProductoController {
     @GetMapping("/Producto/ProductoxNegocio")
     public List<Producto>  TraerProductoXnegocio(@RequestParam Long idNegocio) {
         return this.productoServiceImpl.TraerProductosxNegocio(idNegocio);
+    }
+    
+    @GetMapping("/producto/BuscarProducto")
+    public Producto BuscarProducto(@RequestParam Long idProducto) {
+        return this.productoServiceImpl.BuscarProducto(idProducto);
+    }
+
+    @PutMapping("/producto/ActualizarProducto")
+    public Boolean ActualizarProducto(@RequestBody Producto producto) {
+        
+        return this.productoServiceImpl.ActualizarProducto(producto);
     }
     
     
