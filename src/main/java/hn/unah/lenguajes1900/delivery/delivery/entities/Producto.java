@@ -32,7 +32,7 @@ public class Producto {
 
     private String nombre;
 
-    private String descripción;
+    private String descripcion;
 
     private Float precio;
 
