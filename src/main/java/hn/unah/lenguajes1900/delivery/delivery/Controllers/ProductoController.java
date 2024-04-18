@@ -11,6 +11,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -46,6 +47,11 @@ public class ProductoController {
     public Boolean ActualizarProducto(@RequestBody Producto producto) {
         
         return this.productoServiceImpl.ActualizarProducto(producto);
+    }
+
+    @GetMapping("/producto/Eliminar")
+    public Boolean EliminarProducto(@RequestParam Long idProducto){
+        return this.productoServiceImpl.EliminarProducto(idProducto);
     }
     
     

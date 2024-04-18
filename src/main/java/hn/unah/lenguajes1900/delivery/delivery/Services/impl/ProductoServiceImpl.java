@@ -68,5 +68,15 @@ public class ProductoServiceImpl implements ProductoService{
             return false;
         }
     }
+
+    @Override
+    public Boolean EliminarProducto(Long idProducto) {
+        try {
+            this.productoRepositorie.deleteById(idProducto);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
     
 }
