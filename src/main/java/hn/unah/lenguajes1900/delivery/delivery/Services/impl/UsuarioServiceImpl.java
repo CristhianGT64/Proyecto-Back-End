@@ -12,8 +12,10 @@ import hn.unah.lenguajes1900.delivery.delivery.dtos.ActualizarDireccionesReparti
 import hn.unah.lenguajes1900.delivery.delivery.dtos.Login;
 import hn.unah.lenguajes1900.delivery.delivery.entities.Roles;
 import hn.unah.lenguajes1900.delivery.delivery.entities.Usuarios;
+import hn.unah.lenguajes1900.delivery.delivery.entities.Vehiculo;
 import hn.unah.lenguajes1900.delivery.delivery.repositories.RolesRepositories;
 import hn.unah.lenguajes1900.delivery.delivery.repositories.UsusarioRepositories;
+import hn.unah.lenguajes1900.delivery.delivery.repositories.VehiculoRepositorie;
 
 @Service
 public class UsuarioServiceImpl implements UsuarioService{
@@ -23,6 +25,9 @@ public class UsuarioServiceImpl implements UsuarioService{
 
     @Autowired
     private RolesRepositories rolesRepositories;
+
+    @Autowired
+    private VehiculoRepositorie vehiculoRepositorie;
 
     // Inicio de sesion
     //Verifica primero si el corro existe y si existe valida la contrasena
@@ -71,14 +76,17 @@ public class UsuarioServiceImpl implements UsuarioService{
         if (this.ususarioRepositories.findByEmail(repartidor.getEmail()).isEmpty()) {
             Roles rolDefault = this.rolesRepositories.findById(2).get();
 
-            double latitudDefault= 34.2345;
+            double latitudDefault= 14.0645;
             double longitudDefault= -87.3345;
 
             repartidor.setRoles(rolDefault);
             repartidor.setLatitud((float) latitudDefault);
             repartidor.setLongitud((float) longitudDefault);
-            
-            this.ususarioRepositories.save(repartidor);
+
+            Vehiculo vehiculo = repartidor.getVehiculo();
+            vehiculo.setUsuario(repartidor);
+            this.vehiculoRepositorie.save(vehiculo);
+            // this.ususarioRepositories.save(repartidor);
             return true;
             }
         return false;
