@@ -12,4 +12,6 @@ public interface NegocioService {
     public List<Negocio> traerNegocios();
 
     public Negocio BuscarNegocioAdministrador(Long idUsuario);
+
+    public Negocio buscarPorId(Long idNegocio);
 }

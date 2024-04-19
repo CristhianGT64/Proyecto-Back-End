@@ -63,5 +63,10 @@ public class NegocioServiceImpl implements NegocioService{
             return null;
         }
     }
+
+    @Override
+    public Negocio buscarPorId(Long idNegocio) {
+        return this.negocioRepsitory.findById(idNegocio).get();
+    }
     
 }

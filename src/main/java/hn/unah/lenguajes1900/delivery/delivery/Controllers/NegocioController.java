@@ -44,5 +44,10 @@ public class NegocioController {
     public Negocio traerNegocioporAdministradorNegocio(@RequestParam Long idUsuario) {
         return  this.negocioServiceImpl.BuscarNegocioAdministrador(idUsuario);
     }
+
+    @GetMapping("/negocio/buscarPorId")
+    public Negocio bucarPorId(@RequestParam Long idNegocio){
+        return this.negocioServiceImpl.buscarPorId(idNegocio);
+    }
     
 }
