@@ -40,7 +40,7 @@ public class Negocio {
 
     private float longitud;
 
-    private String descripccion;
+    private String descripcion;
 
     private String imagen;
 
