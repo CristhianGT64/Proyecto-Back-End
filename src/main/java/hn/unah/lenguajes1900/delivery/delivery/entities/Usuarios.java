@@ -27,7 +27,7 @@ public class Usuarios {
     @JoinColumn(name = "idpersona", referencedColumnName = "idpersona")
     private Personas personas;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne()
     @JoinColumn(name = "idrol", referencedColumnName = "idrol")
     private Roles roles;
 
@@ -44,4 +44,8 @@ public class Usuarios {
     private Float latitud;
     
     private Float longitud;
+
+    
+    @OneToOne( mappedBy = "usuario")
+    private Vehiculo vehiculo;
 }
