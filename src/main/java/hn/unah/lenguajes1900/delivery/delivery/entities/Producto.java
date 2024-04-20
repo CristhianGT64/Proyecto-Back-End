@@ -39,4 +39,5 @@ public class Producto {
     private Integer cantidad;
 
     private String imagen;
+
 }

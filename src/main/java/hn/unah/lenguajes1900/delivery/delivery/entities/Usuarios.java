@@ -1,5 +1,7 @@
 package hn.unah.lenguajes1900.delivery.delivery.entities;
 
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.CascadeType;
@@ -9,6 +11,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.Data;
@@ -47,8 +50,16 @@ public class Usuarios {
 
     @Column(columnDefinition = "TINYINT(1)")
     private Integer estado;
-
     
     @OneToOne( mappedBy = "usuario")
     private Vehiculo vehiculo;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "usuario")
+    private List<Pedido> pedidoUsuario;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "repartidor")
+    private List<Pedido> pedidoRepartidor;
+    
 }
