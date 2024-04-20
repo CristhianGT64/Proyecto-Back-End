@@ -5,6 +5,7 @@ import java.sql.Time;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import jakarta.persistence.CascadeType;
 // import hn.unah.lenguajes1900.delivery.delivery.dtos.Repartidor;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -47,6 +48,6 @@ public class Pedido {
     private Time hora;
 
     @JsonIgnore
-    @OneToOne(mappedBy = "pedido")
+    @OneToOne(mappedBy = "pedido", cascade = CascadeType.ALL)
     private DetallePedido detallePedido;
 }
