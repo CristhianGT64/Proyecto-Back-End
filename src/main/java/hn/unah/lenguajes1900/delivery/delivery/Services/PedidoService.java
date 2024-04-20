@@ -8,4 +8,6 @@ public interface PedidoService {
     
     public InformacionPedido TraerPedidoNuevo(Long idRepartidor); //Esta hecho para que el repartidor vea los pedidos que le toca
 
+    public Boolean FinalizarPedido(Long idPedido);
+
 }

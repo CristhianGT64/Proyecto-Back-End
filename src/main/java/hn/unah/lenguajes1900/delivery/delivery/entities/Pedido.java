@@ -34,7 +34,7 @@ public class Pedido {
     @JoinColumn(name = "idusuariofinal" , referencedColumnName = "idusuario")
     private Usuarios usuario;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "idrepartidor", referencedColumnName = "idusuario")
     private Usuarios repartidor;
 

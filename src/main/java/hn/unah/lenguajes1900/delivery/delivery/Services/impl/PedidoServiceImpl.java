@@ -44,13 +44,13 @@ public class PedidoServiceImpl implements PedidoService{
 
                 //Nuevo objeto de producto para agregarlo despues al dto
                 
-                Producto producto = new Producto();
                 List<Producto> listaProductos = new ArrayList<>() {
                     
                 };
 
 
                 for (DetallePedido detallePedido2 : detallePedido) {
+                    Producto producto = new Producto();
                     producto.setCantidad(detallePedido2.getCantidad());
                     producto.setNombre(detallePedido2.getProducto().getNombre());
                     producto.setImagen(detallePedido2.getProducto().getImagen());
@@ -60,7 +60,7 @@ public class PedidoServiceImpl implements PedidoService{
                 }
                 informacionPedido.setProducto(listaProductos);
                 informacionPedido.setIdPedido(pedido2.getIdpedido());
-                informacionPedido.setNombreUsuario(pedido2.getUsuario().getPersonas().getPrimerapellido() + " " + pedido2.getUsuario().getPersonas().getPrimerapellido());
+                informacionPedido.setNombreUsuario(pedido2.getUsuario().getPersonas().getPrimernombre() + " " + pedido2.getUsuario().getPersonas().getPrimerapellido());
                 informacionPedido.setTelefono(pedido2.getUsuario().getTelefono());
                 informacionPedido.setLatitud(pedido2.getUsuario().getLatitud());
                 informacionPedido.setLongitud(pedido2.getUsuario().getLongitud());
@@ -70,6 +70,22 @@ public class PedidoServiceImpl implements PedidoService{
             }
         }
         return null;
+    }
+
+    @Override
+    public Boolean FinalizarPedido(Long idPedido) {
+        try {
+            Pedido pedido = this.pedidoRepositorie.findById(idPedido).get();
+            pedido.setEstado("Entragado");
+            this.pedidoRepositorie.save(pedido);
+
+            Usuarios repartidor = this.ususarioRepositories.findById(pedido.getRepartidor().getIdusuario()).get();
+            repartidor.setEstado(1);
+            this.ususarioRepositories.save(repartidor);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
     
 }
