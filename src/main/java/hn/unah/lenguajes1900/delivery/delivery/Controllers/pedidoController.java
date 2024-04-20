@@ -6,7 +6,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import hn.unah.lenguajes1900.delivery.delivery.Services.impl.PedidoServiceImpl;
 import hn.unah.lenguajes1900.delivery.delivery.Services.impl.UsuarioServiceImpl;
+import hn.unah.lenguajes1900.delivery.delivery.dtos.InformacionPedido;
 import hn.unah.lenguajes1900.delivery.delivery.dtos.Repartidor;
+import hn.unah.lenguajes1900.delivery.delivery.entities.DetallePedido;
 import hn.unah.lenguajes1900.delivery.delivery.entities.Pedido;
 import hn.unah.lenguajes1900.delivery.delivery.repositories.UsusarioRepositories;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,7 +31,7 @@ public class pedidoController {
     }
 
     @GetMapping("/Pedido/TraerPedidosRepartidor")
-    public Pedido TraerPedidosRepartidor(@RequestParam Long idRepartidor) {
+    public InformacionPedido TraerPedidosRepartidor(@RequestParam Long idRepartidor) {
         return this.pedidoServiceImpl.TraerPedidoNuevo(idRepartidor);
     }
     
