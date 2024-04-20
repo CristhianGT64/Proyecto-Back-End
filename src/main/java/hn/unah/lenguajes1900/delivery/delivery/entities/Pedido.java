@@ -48,7 +48,7 @@ public class Pedido {
 
     private LocalDate fecha;
 
-    private Time hora;
+    private String hora;
 
     @JsonIgnore
     @OneToMany(mappedBy = "pedido")
