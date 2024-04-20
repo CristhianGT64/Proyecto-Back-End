@@ -45,6 +45,9 @@ public class Usuarios {
     
     private Float longitud;
 
+    @Column(columnDefinition = "TINYINT(1)")
+    private Integer estado;
+
     
     @OneToOne( mappedBy = "usuario")
     private Vehiculo vehiculo;
