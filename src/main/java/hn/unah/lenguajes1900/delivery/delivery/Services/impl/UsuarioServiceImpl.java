@@ -121,7 +121,7 @@ public class UsuarioServiceImpl implements UsuarioService{
     }
 
     @Override
-    public Repartidor RepartidorCercanoNegocio(Long idNegocio) {
+    public Repartidor CalcualDistancia(Long idNegocio, Long idUsuario) {
        try {
             int radioTierra = 6371;
             
@@ -140,6 +140,9 @@ public class UsuarioServiceImpl implements UsuarioService{
             double distancia = 10000; //Con este valo comprobaremos cual esta mas cerca
             double LatitudNegocio = gradosaRadienes(negocio.getLatitud()); //Pasamos este valor a radianes
             //  double LongitudNegoocio = gradosaRadienes(negocio.getLongitud());
+
+        //  ==========================================================================================================
+            //Calular de cual repartidor esta mas cerca de un negocio
 
             for (Usuarios repartidor : usuarios) { //Recorremos nuestra lista de repartidores
                 if (repartidor.getEstado() == 1) {
@@ -165,10 +168,15 @@ public class UsuarioServiceImpl implements UsuarioService{
                         repartidorCercano.setDistanciaNegocioRepartido(distancia);
                         repartidorCercano.setIdRepartidor(repartidor.getIdusuario());
                         repartidorCercano.setNombre(repartidor.getPersonas().getPrimernombre() + " " +  repartidor.getPersonas().getPrimernombre());
+                        repartidorCercano.setMarca(repartidor.getVehiculo().getMarca());
+                        repartidorCercano.setModelo(repartidor.getVehiculo().getPlaca());
+                        repartidorCercano.setPlaca(repartidor.getVehiculo().getPlaca());
                     }
                 }
             } /* Final del for Each */
 
+            //Final del calculo
+            // ===============================================================================================
             //En base al repatidor que quedo le cambiamos el estado
             repartidorCercano.setEstado(false);
 
@@ -178,7 +186,37 @@ public class UsuarioServiceImpl implements UsuarioService{
 
             this.ususarioRepositories.save(repartidorEstado); //Actualizamos el estado en la BD
 
-        
+            //Calcular distancia entre negocio y repartidor
+            // ==========================================================
+
+            //Traer informacion del usuario
+                Usuarios usuarioDestino = this.ususarioRepositories.findById(idUsuario).get();
+                    
+                    double detltaLatidutd2 = gradosaRadienes(negocio.getLatitud() - usuarioDestino.getLatitud()); // Diferencia entre latitudes de negocio y repartidos
+                    double deltaLongitud2 = gradosaRadienes(negocio.getLongitud() - usuarioDestino.getLongitud());
+
+                    double latitudUsuario = gradosaRadienes(usuarioDestino.getLatitud());
+
+                    //Hacemos la formula de haversine
+                    double a = Math.pow(Math.sin(detltaLatidutd2 / 2) , 2) + Math.cos(LatitudNegocio)*Math.cos(latitudUsuario)*Math.pow(Math.sin(deltaLongitud2 / 2), 2) ;
+                    double c = 2 * Math.atan2(Math.sqrt(a) , Math.sqrt(1 - a));
+                    double d = radioTierra * c;
+
+                    //Si la distancia sale negativa entonces la pasamos a postiviva
+                    //Esto sucede ya que es un circulo que analizamos
+                    if (d < 0) {
+                        d = d*(-1);
+                    }
+
+                    repartidorCercano.setDistanciaNegocioUsuarui(d);
+                
+                //Final de calculo de distancia usuario repartidor
+                // =============================================================================
+
+                //Suma total del repartidor al negocio y del negocio al usuario
+
+                repartidorCercano.setDistanciaTotal(repartidorCercano.getDistanciaNegocioRepartido() + repartidorCercano.getDistanciaNegocioUsuarui());
+
             return repartidorCercano; //Regresamos nuestro repartidor mas cercano
        } catch (Exception e) {
          return null;

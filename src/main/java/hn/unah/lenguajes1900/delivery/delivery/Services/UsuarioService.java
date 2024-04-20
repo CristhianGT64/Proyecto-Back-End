@@ -19,6 +19,6 @@ public interface UsuarioService {
 
     public Boolean crearRepartidor(Usuarios usuario);
 
-    public Repartidor RepartidorCercanoNegocio(Long idNegocio);
+    public Repartidor CalcualDistancia(Long idNegocio, Long idUsuario);
     
 }

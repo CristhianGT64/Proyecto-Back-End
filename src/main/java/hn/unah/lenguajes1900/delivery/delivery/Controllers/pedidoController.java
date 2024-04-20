@@ -19,8 +19,8 @@ public class pedidoController {
     private UsuarioServiceImpl usuarioServiceImpl;
 
     @GetMapping("/Pedido/DistanciaNegocioRepartidor")
-    public Repartidor CalcularDistanciaRepartidorNegocio(@RequestParam Long idNegocio) {
-        return this.usuarioServiceImpl.RepartidorCercanoNegocio(idNegocio);
+    public Repartidor CalcularDistanciaRepartidorNegocio(@RequestParam Long idNegocio, @RequestParam Long idUsuario) {
+        return this.usuarioServiceImpl.CalcualDistancia(idNegocio, idUsuario);
     }
     
 }

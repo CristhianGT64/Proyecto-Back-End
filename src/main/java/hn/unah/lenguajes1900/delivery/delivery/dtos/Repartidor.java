@@ -11,4 +11,14 @@ public class Repartidor {
     public Boolean Estado;
 
     public double distanciaNegocioRepartido;
+
+    public double distanciaNegocioUsuarui;
+
+    public double distanciaTotal;
+
+    private String marca;
+
+    private String modelo;
+
+    private String placa;
 }
