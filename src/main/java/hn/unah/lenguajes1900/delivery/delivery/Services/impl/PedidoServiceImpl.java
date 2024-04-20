@@ -26,7 +26,7 @@ public class PedidoServiceImpl implements PedidoService{
     public Pedido TraerPedidoNuevo(Long idRepartidor) {
         Usuarios repartidor = this.ususarioRepositories.findById(idRepartidor).get();
 
-        List<Pedido> listaPedidos = this.pedidoRepositorie.findByUsuario(repartidor);
+        List<Pedido> listaPedidos = this.pedidoRepositorie.findByRepartidor(repartidor);
 
         for (Pedido pedido2 : listaPedidos) {
             if (pedido2.getEstado() == null) {
