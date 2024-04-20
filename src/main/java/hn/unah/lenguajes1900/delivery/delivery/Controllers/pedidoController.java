@@ -40,7 +40,7 @@ public class pedidoController {
         return this.pedidoServiceImpl.TraerPedidoNuevo(idRepartidor);
     }
 
-    @PutMapping("/Pedido/EntregarPedido")
+    @GetMapping("/Pedido/EntregarPedido")
     public Boolean EntregarPedido(@RequestParam Long idPedido) {
         return this.pedidoServiceImpl.FinalizarPedido(idPedido);
     }

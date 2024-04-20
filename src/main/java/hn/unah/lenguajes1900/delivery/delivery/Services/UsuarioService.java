@@ -20,5 +20,7 @@ public interface UsuarioService {
     public Boolean crearRepartidor(Usuarios usuario);
 
     public Repartidor CalcualDistancia(Long idNegocio, Long idUsuario);
+
+    public Boolean EstadoRepartidor(Long idRepartidor);
     
 }

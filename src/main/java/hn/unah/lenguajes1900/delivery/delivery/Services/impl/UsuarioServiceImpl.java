@@ -231,5 +231,15 @@ public class UsuarioServiceImpl implements UsuarioService{
         return (180 / Math.PI) * radianes;
     }
 
+    @Override
+    public Boolean EstadoRepartidor(Long idRepardiro) {
+        //SOLAMENTE VALIDAMOS QUE EL ESTADO del repartidor para el mapa
+        Usuarios repartidorEstado = this.ususarioRepositories.findById(idRepardiro).get();
+        if (repartidorEstado.getEstado() == 1) {
+            return true;
+        }
+        return false;
+    }
+
     
 }

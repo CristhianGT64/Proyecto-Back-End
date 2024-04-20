@@ -25,6 +25,8 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PutMapping;
 // import org.springframework.web.bind.annotation.PathVariable;
 // 
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 @CrossOrigin(origins = "*")
 @RestController
@@ -60,6 +62,12 @@ public class UsuarioController {
         
         return this.usuarioServiceImpl.ActualizarDireccion(nvoDireccion);
     }
+
+    @GetMapping("Usuario/EstadoRepartidor")
+    public Boolean EstadoRepartidor(@RequestParam Long idRepartidor) {
+        return this.usuarioServiceImpl.EstadoRepartidor(idRepartidor);
+    }
+    
     
 
     
