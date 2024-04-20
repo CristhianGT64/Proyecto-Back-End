@@ -3,6 +3,7 @@ package hn.unah.lenguajes1900.delivery.delivery.entities;
 import java.sql.Date;
 import java.sql.Time;
 import java.time.LocalDate;
+import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -26,18 +27,18 @@ import lombok.Data;
 public class Pedido {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idPedido")
+    @Column(name = "idpedido")
     private Long idpedido;
 
-    @ManyToOne()
+    @ManyToOne
     @JoinColumn(name = "idusuariofinal" , referencedColumnName = "idusuario")
     private Usuarios usuario;
 
-    @ManyToOne()
+    @ManyToOne
     @JoinColumn(name = "idrepartidor", referencedColumnName = "idusuario")
     private Usuarios repartidor;
 
-    @ManyToOne()
+    @ManyToOne
     @JoinColumn(name = "idnegocio" , referencedColumnName = "idnegocio")
     private Negocio negocio;
 
@@ -51,5 +52,5 @@ public class Pedido {
 
     @JsonIgnore
     @OneToMany(mappedBy = "pedido")
-    private DetallePedido detallePedido;
+    private List<DetallePedido> detallePedido;
 }
