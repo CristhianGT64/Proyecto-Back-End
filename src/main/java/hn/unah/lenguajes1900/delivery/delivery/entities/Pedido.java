@@ -2,6 +2,7 @@ package hn.unah.lenguajes1900.delivery.delivery.entities;
 
 import java.sql.Date;
 import java.sql.Time;
+import java.time.LocalDate;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -14,6 +15,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.Data;
@@ -43,11 +45,11 @@ public class Pedido {
 
     private Float total;
 
-    private Date fecha;
+    private LocalDate fecha;
 
     private Time hora;
 
     @JsonIgnore
-    @OneToOne(mappedBy = "pedido", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "pedido")
     private DetallePedido detallePedido;
 }
