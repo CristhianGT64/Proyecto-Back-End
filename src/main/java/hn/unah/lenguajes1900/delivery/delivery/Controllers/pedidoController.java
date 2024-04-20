@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
 
 
@@ -44,5 +45,10 @@ public class pedidoController {
         return this.pedidoServiceImpl.FinalizarPedido(idPedido);
     }
     
+
+    @PostMapping("/Pedido/CrearPedido")
+    public Long crearPedido(@RequestBody Pedido pedido){
+        return this.pedidoServiceImpl.crearPedido(pedido);
+    }
     
 }

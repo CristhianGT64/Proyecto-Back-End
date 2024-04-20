@@ -22,7 +22,7 @@ public class DetallePedido {
     @Column(name = "iddetallepedido")
     private Long iddetallepedido;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne()
     @JoinColumn(name = "idpedido", referencedColumnName = "idpedido")
     private Pedido pedido;
 

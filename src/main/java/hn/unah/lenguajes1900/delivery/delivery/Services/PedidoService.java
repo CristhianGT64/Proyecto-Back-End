@@ -10,4 +10,6 @@ public interface PedidoService {
 
     public Boolean FinalizarPedido(Long idPedido);
 
+    public Long crearPedido(Pedido pedido);
+
 }

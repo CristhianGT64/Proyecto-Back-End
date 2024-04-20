@@ -1,5 +1,8 @@
 package hn.unah.lenguajes1900.delivery.delivery.Services.impl;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -86,6 +89,21 @@ public class PedidoServiceImpl implements PedidoService{
         } catch (Exception e) {
             return false;
         }
+    }
+
+    @Override
+    public Long crearPedido(Pedido pedido) {
+
+        LocalTime horaActual= LocalTime.now();
+        DateTimeFormatter formato = DateTimeFormatter.ofPattern("HH:mm");
+        String horaConFormato = horaActual.format(formato);
+
+        pedido.setFecha(LocalDate.now());
+        pedido.setHora(horaConFormato);
+        
+        Pedido pedido1 = this.pedidoRepositorie.save(pedido);
+
+        return pedido1.getIdpedido();
     }
     
 }
