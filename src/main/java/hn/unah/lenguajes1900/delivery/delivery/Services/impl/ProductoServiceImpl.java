@@ -78,5 +78,11 @@ public class ProductoServiceImpl implements ProductoService{
             return false;
         }
     }
+
+    @Override
+    public List<Producto> ProductosxCategoria(Long idCategoria) {
+        Categoria categoria = categoriaRepositorie.findById(idCategoria).get();
+        return this.productoRepositorie.findByCategoria(categoria);
+    }
     
 }

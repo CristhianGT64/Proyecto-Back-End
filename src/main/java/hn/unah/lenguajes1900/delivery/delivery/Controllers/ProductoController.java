@@ -53,6 +53,12 @@ public class ProductoController {
     public Boolean EliminarProducto(@RequestParam Long idProducto){
         return this.productoServiceImpl.EliminarProducto(idProducto);
     }
+
+    @GetMapping("/producto.ProductosXcategoria")
+    public List<Producto> ProductosXcategoria(@RequestParam Long idCategoria) {
+        return this.productoServiceImpl.ProductosxCategoria(idCategoria);
+    }
+    
     
     
 }

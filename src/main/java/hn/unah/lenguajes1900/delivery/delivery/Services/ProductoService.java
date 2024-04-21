@@ -19,4 +19,6 @@ public interface ProductoService {
 
     public Boolean EliminarProducto(Long idProducto);
 
+    public List<Producto> ProductosxCategoria(Long idCategoria);
+
 }
