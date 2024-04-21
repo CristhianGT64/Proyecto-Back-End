@@ -154,6 +154,7 @@ public class PedidoServiceImpl implements PedidoService{
                 InformacionReportes.setLatitud(pedido2.getUsuario().getLatitud());
                 InformacionReportes.setLongitud(pedido2.getUsuario().getLongitud());
                 InformacionReportes.setNombreNegocio(pedido2.getNegocio().getNombre());
+                InformacionReportes.setTotal(pedido2.getTotal());
                 InformacionReportes.setNombreRepartidor(pedido2.getRepartidor().getPersonas().getPrimernombre()+" "+ pedido2.getRepartidor().getPersonas().getPrimerapellido());
                 InformacionReportes.setPlaca(pedido2.getRepartidor().getVehiculo().getPlaca());
                 InformacionReportes.setMarca(pedido2.getRepartidor().getVehiculo().getMarca()); 
@@ -206,6 +207,7 @@ public class PedidoServiceImpl implements PedidoService{
                 InformacionReportes.setLatitud(pedido2.getUsuario().getLatitud());
                 InformacionReportes.setLongitud(pedido2.getUsuario().getLongitud());
                 InformacionReportes.setNombreNegocio(pedido2.getNegocio().getNombre());
+                InformacionReportes.setTotal(pedido2.getTotal());
                 InformacionReportes.setNombreRepartidor(pedido2.getRepartidor().getPersonas().getPrimernombre()+" "+ pedido2.getRepartidor().getPersonas().getPrimerapellido());
                 InformacionReportes.setPlaca(pedido2.getRepartidor().getVehiculo().getPlaca());
                 InformacionReportes.setMarca(pedido2.getRepartidor().getVehiculo().getMarca()); 
@@ -255,6 +257,7 @@ public class PedidoServiceImpl implements PedidoService{
                  InformacionReportes.setLatitud(pedido.getUsuario().getLatitud());
                  InformacionReportes.setLongitud(pedido.getUsuario().getLongitud());
                  InformacionReportes.setNombreNegocio(pedido.getNegocio().getNombre());
+                 InformacionReportes.setTotal(pedido.getTotal());
                  InformacionReportes.setNombreRepartidor(pedido.getRepartidor().getPersonas().getPrimernombre()+" "+ pedido.getRepartidor().getPersonas().getPrimerapellido());
                  InformacionReportes.setPlaca(pedido.getRepartidor().getVehiculo().getPlaca());
                  InformacionReportes.setMarca(pedido.getRepartidor().getVehiculo().getMarca()); 

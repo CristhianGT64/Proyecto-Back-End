@@ -34,4 +34,6 @@ public class InformacionReportes {
     private String nombreNegocio;
 
    private List<Producto> producto;
+
+   private Float total;
 }
