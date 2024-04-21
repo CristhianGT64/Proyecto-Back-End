@@ -19,6 +19,8 @@ public class InformacionReportes {
 
     private float longitud;
 
+    private String estado;
+
     private String nombreRepartidor; //ya
 
     private String placa; //Ya

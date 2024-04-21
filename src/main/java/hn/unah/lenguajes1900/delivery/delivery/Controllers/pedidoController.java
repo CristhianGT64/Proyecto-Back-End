@@ -11,14 +11,14 @@ import hn.unah.lenguajes1900.delivery.delivery.Services.impl.PedidoServiceImpl;
 import hn.unah.lenguajes1900.delivery.delivery.Services.impl.UsuarioServiceImpl;
 import hn.unah.lenguajes1900.delivery.delivery.dtos.InformacionPedido;
 import hn.unah.lenguajes1900.delivery.delivery.dtos.Repartidor;
-import hn.unah.lenguajes1900.delivery.delivery.entities.DetallePedido;
+// import hn.unah.lenguajes1900.delivery.delivery.entities.DetallePedido;
 import hn.unah.lenguajes1900.delivery.delivery.entities.Pedido;
-import hn.unah.lenguajes1900.delivery.delivery.repositories.UsusarioRepositories;
+// import hn.unah.lenguajes1900.delivery.delivery.repositories.UsusarioRepositories;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.PutMapping;
+// import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.PathVariable;
+// import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 

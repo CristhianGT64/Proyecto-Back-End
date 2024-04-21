@@ -146,6 +146,7 @@ public class PedidoServiceImpl implements PedidoService{
                 }
                 //Seteamos todo a informacionReportes para que el arreglo en el fron sea super mas facil
                 InformacionReportes.setProducto(listaProductos);
+                InformacionReportes.setEstado(pedido2.getEstado());
                 InformacionReportes.setIdPedido(pedido2.getIdpedido());
                 InformacionReportes.setNombreUsuario(pedido2.getUsuario().getPersonas().getPrimernombre() + " " + pedido2.getUsuario().getPersonas().getPrimerapellido());
                 InformacionReportes.setTelefono(pedido2.getUsuario().getTelefono());
@@ -197,6 +198,7 @@ public class PedidoServiceImpl implements PedidoService{
                 }
                 //Seteamos todo a informacionReportes para que el arreglo en el fron sea super mas facil
                 InformacionReportes.setProducto(listaProductos);
+                InformacionReportes.setEstado(pedido2.getEstado());
                 InformacionReportes.setIdPedido(pedido2.getIdpedido());
                 InformacionReportes.setNombreUsuario(pedido2.getUsuario().getPersonas().getPrimernombre() + " " + pedido2.getUsuario().getPersonas().getPrimerapellido());
                 InformacionReportes.setTelefono(pedido2.getUsuario().getTelefono());
