@@ -87,7 +87,7 @@ public class PedidoServiceImpl implements PedidoService{
         try {
             //Esta api modifica el estado del pedido y la disponibilidad de repartidor
             Pedido pedido = this.pedidoRepositorie.findById(idPedido).get();
-            pedido.setEstado("Entragado");
+            pedido.setEstado("Entregado");
             this.pedidoRepositorie.save(pedido);
 
             Usuarios repartidor = this.ususarioRepositories.findById(pedido.getRepartidor().getIdusuario()).get();
