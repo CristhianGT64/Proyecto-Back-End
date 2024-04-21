@@ -1,6 +1,7 @@
 package hn.unah.lenguajes1900.delivery.delivery.Services;
 
 import java.util.List;
+import java.util.Optional;
 
 // import org.hibernate.mapping.List;
 
@@ -20,5 +21,7 @@ public interface PedidoService {
     public List<InformacionReportes> TodoslosPedidos();
 
     public List<InformacionReportes> PedidosxNegocio(Long idNegocio);
+
+    public InformacionReportes ReporteUnico(Long idPedido);
 
 }

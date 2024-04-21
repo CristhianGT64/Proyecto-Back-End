@@ -62,4 +62,9 @@ public class pedidoController {
     public List<InformacionReportes> ReportesPedidos() {
         return this.pedidoServiceImpl.TodoslosPedidos();
     }
+
+    @GetMapping("/Pedido/ReportePedidoEspecifico")
+    public InformacionReportes ReportesPedidos(@RequestParam Long idPedido) {
+        return this.pedidoServiceImpl.ReporteUnico(idPedido);
+    }
 }

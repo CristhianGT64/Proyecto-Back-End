@@ -5,6 +5,7 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 // import org.hibernate.mapping.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -214,5 +215,55 @@ public class PedidoServiceImpl implements PedidoService{
         }
         return ListaReportes;
     }
+
+    @Override
+    public InformacionReportes ReporteUnico(Long idPedido) {
+         //Retornar reportes de un pedido en especifico
+        //  Negocio negocio = this.negocioRepsitory.findById(idNegocio).get();
+
+         //Traer el pedido que necesitamos
+         Pedido pedido = this.pedidoRepositorie.findById(idPedido).get();
+ 
+ 
+
+                 //Me trae la informacion de los productos que se lleva el usuario
+                 List<DetallePedido> detallePedido = this.detallePedidoRepositorie.findByPedido(pedido);
+ 
+                 //Lista donde se guardara la lista de productos que tiene detalle pedido
+                 List<Producto> listaProductos = new ArrayList<>();
+ 
+                  //Creamos un arreglo para meter los detalles de los productos dentro
+                 InformacionReportes InformacionReportes = new InformacionReportes();
+ 
+                 //Recorremos el arreglo de detalles de pedidos para meterlos en una lista de productos
+                 for (DetallePedido detallePedido2 : detallePedido) {
+                 //Nuevo objeto de producto para agregarlo despues al dto
+                     Producto producto = new Producto();
+                     producto.setCantidad(detallePedido2.getCantidad());
+                     producto.setNombre(detallePedido2.getProducto().getNombre());
+                     producto.setImagen(detallePedido2.getProducto().getImagen());
+                     producto.setPrecio(detallePedido2.getProducto().getPrecio());
+                     producto.setDescripcion(detallePedido2.getProducto().getDescripcion());
+                     listaProductos.add(producto);
+                 }
+                 //Seteamos todo a informacionReportes para que el arreglo en el fron sea super mas facil
+                 InformacionReportes.setProducto(listaProductos);
+                 InformacionReportes.setEstado(pedido.getEstado());
+                 InformacionReportes.setIdPedido(pedido.getIdpedido());
+                 InformacionReportes.setNombreUsuario(pedido.getUsuario().getPersonas().getPrimernombre() + " " + pedido.getUsuario().getPersonas().getPrimerapellido());
+                 InformacionReportes.setTelefono(pedido.getUsuario().getTelefono());
+                 InformacionReportes.setLatitud(pedido.getUsuario().getLatitud());
+                 InformacionReportes.setLongitud(pedido.getUsuario().getLongitud());
+                 InformacionReportes.setNombreNegocio(pedido.getNegocio().getNombre());
+                 InformacionReportes.setNombreRepartidor(pedido.getRepartidor().getPersonas().getPrimernombre()+" "+ pedido.getRepartidor().getPersonas().getPrimerapellido());
+                 InformacionReportes.setPlaca(pedido.getRepartidor().getVehiculo().getPlaca());
+                 InformacionReportes.setMarca(pedido.getRepartidor().getVehiculo().getMarca()); 
+                 InformacionReportes.setFecha(pedido.getFecha()); 
+                 InformacionReportes.setHora(pedido.getHora());
+
+         return InformacionReportes;
+    }
+
+    
     
 }
