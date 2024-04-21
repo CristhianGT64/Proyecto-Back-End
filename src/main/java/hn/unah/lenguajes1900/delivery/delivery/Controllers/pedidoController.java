@@ -67,4 +67,14 @@ public class pedidoController {
     public InformacionReportes ReportesPedidos(@RequestParam Long idPedido) {
         return this.pedidoServiceImpl.ReporteUnico(idPedido);
     }
+
+    @GetMapping("/Pedido/ReporteUsuario")
+    public List<InformacionReportes> ReportexUsuario(@RequestParam Long idUsuario){
+        return this.pedidoServiceImpl.PedidosxUsuario(idUsuario);
+    }
+
+    @GetMapping("/Pedido/CancelarPedido")
+    public void cancelarPedido(@RequestParam Long idPedido){
+        this.pedidoServiceImpl.cancelarPedido(idPedido);
+    }
 }

@@ -36,4 +36,6 @@ public class InformacionReportes {
    private List<Producto> producto;
 
    private Float total;
+
+   private String imagenNegocio;
 }

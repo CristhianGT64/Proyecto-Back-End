@@ -24,4 +24,8 @@ public interface PedidoService {
 
     public InformacionReportes ReporteUnico(Long idPedido);
 
+    public List<InformacionReportes> PedidosxUsuario(Long idUsuario);
+
+    public void cancelarPedido(Long idPedido);
+
 }

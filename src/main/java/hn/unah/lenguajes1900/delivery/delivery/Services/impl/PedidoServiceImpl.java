@@ -267,6 +267,80 @@ public class PedidoServiceImpl implements PedidoService{
          return InformacionReportes;
     }
 
+    @Override
+    public List<InformacionReportes> PedidosxUsuario(Long idUsuario) {
+        //Retornar reportes de un pedido en especifico
+        Usuarios usuario = this.ususarioRepositories.findById(idUsuario).get();
+
+        //Traer un listado de los pedidos por reporte
+        List<Pedido> listaPedidos = this.pedidoRepositorie.findByUsuario(usuario);
+
+        //Hacer una lista donde se guardaran la informacion de los reportes
+        List<InformacionReportes> ListaReportes = new ArrayList<>();
+
+        //Iteramos la lista de los pedidos
+        for (Pedido pedido2 : listaPedidos) {
+                //Me trae la informacion de los productos que se lleva el usuario
+                List<DetallePedido> detallePedido = this.detallePedidoRepositorie.findByPedido(pedido2);
+
+                //Lista donde se guardara la lista de productos que tiene detalle pedido
+                List<Producto> listaProductos = new ArrayList<>();
+
+                 //Creamos un arreglo para meter los detalles de los productos dentro
+                InformacionReportes InformacionReportes = new InformacionReportes();
+
+                //Recorremos el arreglo de detalles de pedidos para meterlos en una lista de productos
+                for (DetallePedido detallePedido2 : detallePedido) {
+                //Nuevo objeto de producto para agregarlo despues al dto
+                    Producto producto = new Producto();
+                    producto.setCantidad(detallePedido2.getCantidad());
+                    producto.setNombre(detallePedido2.getProducto().getNombre());
+                    producto.setImagen(detallePedido2.getProducto().getImagen());
+                    producto.setPrecio(detallePedido2.getProducto().getPrecio());
+                    producto.setDescripcion(detallePedido2.getProducto().getDescripcion());
+                    listaProductos.add(producto);
+                }
+                //Seteamos todo a informacionReportes para que el arreglo en el fron sea super mas facil
+                InformacionReportes.setProducto(listaProductos);
+                InformacionReportes.setEstado(pedido2.getEstado());
+                InformacionReportes.setIdPedido(pedido2.getIdpedido());
+                InformacionReportes.setNombreUsuario(pedido2.getUsuario().getPersonas().getPrimernombre() + " " + pedido2.getUsuario().getPersonas().getPrimerapellido());
+                InformacionReportes.setTelefono(pedido2.getUsuario().getTelefono());
+                InformacionReportes.setLatitud(pedido2.getUsuario().getLatitud());
+                InformacionReportes.setLongitud(pedido2.getUsuario().getLongitud());
+                InformacionReportes.setNombreNegocio(pedido2.getNegocio().getNombre());
+                InformacionReportes.setImagenNegocio(pedido2.getNegocio().getImagen());
+                InformacionReportes.setTotal(pedido2.getTotal());
+                InformacionReportes.setNombreRepartidor(pedido2.getRepartidor().getPersonas().getPrimernombre()+" "+ pedido2.getRepartidor().getPersonas().getPrimerapellido());
+                InformacionReportes.setPlaca(pedido2.getRepartidor().getVehiculo().getPlaca());
+                InformacionReportes.setMarca(pedido2.getRepartidor().getVehiculo().getMarca()); 
+                InformacionReportes.setFecha(pedido2.getFecha()); 
+                InformacionReportes.setHora(pedido2.getHora());
+                ListaReportes.add(InformacionReportes);
+        }
+        return ListaReportes;
+    }
+
+    @Override
+    public void cancelarPedido(Long idPedido) {
+        try {
+            
+            Pedido pedido = this.pedidoRepositorie.findById(idPedido).get();
+            Usuarios repartidor = this.ususarioRepositories.findById(pedido.getRepartidor().getIdusuario()).get();
+
+            //Cambiando el estado del pedido a Cancelado
+            pedido.setEstado("Cancelado");
+            this.pedidoRepositorie.save(pedido);
+
+            //Canbiando el estado del repartidor a true
+            repartidor.setEstado(1);
+            this.ususarioRepositories.save(repartidor);
+
+        } catch (Exception e) {
+
+        }
+    }
+
     
     
 }
