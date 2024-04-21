@@ -1,9 +1,12 @@
 package hn.unah.lenguajes1900.delivery.delivery.Controllers;
 
+import java.util.List;
+
+// import org.hibernate.mapping.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
+import hn.unah.lenguajes1900.delivery.delivery.dtos.InformacionReportes;
 import hn.unah.lenguajes1900.delivery.delivery.Services.impl.PedidoServiceImpl;
 import hn.unah.lenguajes1900.delivery.delivery.Services.impl.UsuarioServiceImpl;
 import hn.unah.lenguajes1900.delivery.delivery.dtos.InformacionPedido;
@@ -45,10 +48,18 @@ public class pedidoController {
         return this.pedidoServiceImpl.FinalizarPedido(idPedido);
     }
     
-
     @PostMapping("/Pedido/CrearPedido")
     public Long crearPedido(@RequestBody Pedido pedido){
         return this.pedidoServiceImpl.crearPedido(pedido);
     }
+
+    @GetMapping("/Pedido/ReportesNegocio")
+    public List<InformacionReportes> ReportesNegocio(@RequestParam Long idNegocio) {
+        return this.pedidoServiceImpl.PedidosxNegocio(idNegocio);
+    };
     
+    @GetMapping("/Pedido/ReportesPeidosTodos")
+    public List<InformacionReportes> ReportesPedidos() {
+        return this.pedidoServiceImpl.TodoslosPedidos();
+    }
 }
