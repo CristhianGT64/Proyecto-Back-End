@@ -68,7 +68,10 @@ public class UsuarioController {
         return this.usuarioServiceImpl.EstadoRepartidor(idRepartidor);
     }
     
-    
+    @GetMapping("/Usuario/buscarPorEmail")
+    public Usuarios buscarPorEmail(@RequestParam String email){
+        return this.usuarioServiceImpl.buscarPorEmail(email);
+    }
 
     
 }

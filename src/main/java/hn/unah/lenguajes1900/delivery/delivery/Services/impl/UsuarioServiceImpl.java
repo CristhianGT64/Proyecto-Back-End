@@ -167,7 +167,7 @@ public class UsuarioServiceImpl implements UsuarioService{
                         distancia = d;
                         repartidorCercano.setDistanciaNegocioRepartido(distancia);
                         repartidorCercano.setIdRepartidor(repartidor.getIdusuario());
-                        repartidorCercano.setNombre(repartidor.getPersonas().getPrimernombre() + " " +  repartidor.getPersonas().getPrimernombre());
+                        repartidorCercano.setNombre(repartidor.getPersonas().getPrimernombre() + " " +  repartidor.getPersonas().getPrimerapellido());
                         repartidorCercano.setMarca(repartidor.getVehiculo().getMarca());
                         repartidorCercano.setModelo(repartidor.getVehiculo().getPlaca());
                         repartidorCercano.setPlaca(repartidor.getVehiculo().getPlaca());
@@ -239,6 +239,11 @@ public class UsuarioServiceImpl implements UsuarioService{
             return true;
         }
         return false;
+    }
+
+    @Override
+    public Usuarios buscarPorEmail(String email) {
+        return this.ususarioRepositories.findByEmail(email).get(0);
     }
 
     

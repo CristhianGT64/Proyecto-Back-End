@@ -22,5 +22,7 @@ public interface UsuarioService {
     public Repartidor CalcualDistancia(Long idNegocio, Long idUsuario);
 
     public Boolean EstadoRepartidor(Long idRepartidor);
+
+    public Usuarios buscarPorEmail(String email);
     
 }
