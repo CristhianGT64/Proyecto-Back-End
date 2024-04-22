@@ -22,6 +22,7 @@ import hn.unah.lenguajes1900.delivery.delivery.entities.Usuarios;
 import hn.unah.lenguajes1900.delivery.delivery.repositories.DetallePedidoRepositorie;
 import hn.unah.lenguajes1900.delivery.delivery.repositories.NegocioRepsitory;
 import hn.unah.lenguajes1900.delivery.delivery.repositories.PedidoRepositorie;
+import hn.unah.lenguajes1900.delivery.delivery.repositories.ProductoRepositorie;
 import hn.unah.lenguajes1900.delivery.delivery.repositories.UsusarioRepositories;
 
 @Service
@@ -38,6 +39,9 @@ public class PedidoServiceImpl implements PedidoService{
 
     @Autowired
     private NegocioRepsitory negocioRepsitory;
+
+    @Autowired
+    private ProductoRepositorie productoRepositorie;
 
     @Override
     public InformacionPedido TraerPedidoNuevo(Long idRepartidor) {
@@ -90,7 +94,39 @@ public class PedidoServiceImpl implements PedidoService{
             if (pedido.getEstado() == null){
                 pedido.setEstado("Entregado");
                 this.pedidoRepositorie.save(pedido);
+
+                
+                    //Lista de los detalles de los productos
+                List<DetallePedido> detallePedido = this.detallePedidoRepositorie.findByPedido(pedido);
+
+                //Nuevo objeto de producto para agregarlo despues al dto
+                List<Producto> listaProductos = new ArrayList<>();
+
+                //Recorremos el arreglo de detalles de pedidos para meterlos en una lista de productos
+                for (DetallePedido detallePedido2 : detallePedido) {
+                    Producto producto = new Producto();
+                    producto.setIdproducto(detallePedido2.getProducto().getIdproducto());
+                    producto.setCantidad(detallePedido2.getCantidad());
+                    listaProductos.add(producto);
+                    //En este punto tendremos la lista de los productos de ese pedido, el id y cantidad 
+                    //comprada para restarla en la base de datos
+                }
+
+                for (Producto producto : listaProductos) {
+
+                    //Buscamos el producto para actualizarlo
+                    Producto ActualizarProducto = this.productoRepositorie.findById(producto.getIdproducto()).get();
+
+                    //Restamos lo que tenemos con lo que hay en la base de datos
+                    ActualizarProducto.setCantidad(ActualizarProducto.getCantidad() - producto.getCantidad());
+
+                    //Actualizamos el valor
+                    this.productoRepositorie.save(ActualizarProducto);
+                }
+
+
             }
+
 
             Usuarios repartidor = this.ususarioRepositories.findById(pedido.getRepartidor().getIdusuario()).get();
             repartidor.setEstado(1);
